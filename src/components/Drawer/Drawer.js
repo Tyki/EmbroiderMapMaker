@@ -59,9 +59,21 @@ class AppDrawer extends React.Component {
               color={this.state.pickedColor}
               onChangeComplete={ this.handleChangeComplete }/>
           </ListItem>
+
+          <ListItem>
+            <button type="button" onClick={this.save}>Sauvegarder le dessin</button>
+          </ListItem>
+
+          <ListItem>
+            <button type="button" onClick={this.print}>Imprimer</button>
+          </ListItem>
         </List>
       // </Drawer>
     )
+  }
+
+  print = () => {
+    window.print()
   }
 
   handleChangeComplete = (color) => {
