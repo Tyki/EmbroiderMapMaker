@@ -5,6 +5,11 @@ class AppStore {
   lines = 5;
   color = '#fff'
   mouseDown = false
+  size = 10
+
+  setSize = (size) => {
+    this.size = size
+  }
 
   setLines = (lines) => {
     this.lines = lines
@@ -28,11 +33,13 @@ decorate(AppStore, {
   lines: observable,
   color: observable,
   mouseDown: observable,
+  size: observable,
 
   setLines: action,
   setColumns: action,
   setColor: action,
-  setMousedown: action
+  setMousedown: action,
+  setSize: action
 })
 
 export const store = new AppStore()

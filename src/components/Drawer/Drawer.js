@@ -11,7 +11,8 @@ class AppDrawer extends React.Component {
     this.state = {
       columns: 5,
       lines: 5,
-      pickedColor: '#fff'
+      pickedColor: '#fff',
+      size: this.props.Store.size
     }
   }
 
@@ -23,6 +24,7 @@ class AppDrawer extends React.Component {
       //   open={true}
       // >
         <List>
+          <form onSubmit={this.updateStore}>
           <ListItem>
             Colonnes:&nbsp;
             <input type="number" 
@@ -40,8 +42,17 @@ class AppDrawer extends React.Component {
           </ListItem>
 
           <ListItem>
-            <button type="button" onClick={this.updateStore}>Valider</button>
+            Taille:&nbsp;
+            <input type="number" 
+              value={this.state.size} 
+              onChange={(e) => this.setState({size: parseInt(e.target.value)})} 
+            />
           </ListItem>
+
+          <ListItem>
+            <button type="submit" onClick={this.updateStore}>Valider</button>
+          </ListItem>
+          </form>
 
           <ListItem>
             <SketchPicker 
@@ -57,9 +68,13 @@ class AppDrawer extends React.Component {
     this.props.Store.setColor(color)
   };
 
-  updateStore = () => {
+  updateStore = (e) => {
+    if (e && e.preventDefault) {
+      e.preventDefault()
+    }
     this.props.Store.setLines(this.state.lines)
     this.props.Store.setColumns(this.state.columns)
+    this.props.Store.setSize(this.state.size)
   }
 }
 

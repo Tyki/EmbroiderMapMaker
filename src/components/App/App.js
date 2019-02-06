@@ -23,9 +23,11 @@ class App extends Component {
                 return [...Array(this.props.Store.columns)].map((val, x) => {
                   return (
                     <Rectangle 
-                      key={`x-${x*10}#y-${y*10}`}
-                      x={x*10} 
-                      y={y*10} />
+                      key={`x-${x*this.props.Store.size}#y-${y*this.props.Store.size}`}
+                      x={x*this.props.Store.size} 
+                      y={y*this.props.Store.size} 
+                      size={this.props.Store.size}  
+                    />
                   )
                 })
               })}

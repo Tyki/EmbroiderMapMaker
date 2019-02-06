@@ -14,8 +14,8 @@ class Rectangle extends React.Component {
     return <Rect 
       x={this.props.x} 
       y={this.props.y} 
-      width={10} 
-      height={10} 
+      width={this.props.size} 
+      height={this.props.size} 
       fill={this.state.color}
       stroke='black'
       strokeWidth={1} 
