@@ -8,6 +8,10 @@ import Grid from '@material-ui/core/Grid'
 
 class App extends Component {
   render() {
+    const size = this.props.Store.size
+    const width = (this.props.Store.columns + 2) * size
+    const height = (this.props.Store.lines + 2) * size
+
     return (
       <Grid container>
         <Grid item xs={3}>
@@ -15,24 +19,26 @@ class App extends Component {
         </Grid>
 
         <Grid item xs={9}>
-          {<Stage width={window.innerWidth} height={window.innerHeight}
-            onMouseDown={() => this.handleMousedown(true)}
-            onMouseUp={() => this.handleMousedown(false)}>
-            <Layer>
-              {[...Array(this.props.Store.lines)].map((val, y) => {
-                return [...Array(this.props.Store.columns)].map((val, x) => {
-                  return (
-                    <Rectangle 
-                      key={`x-${x*this.props.Store.size}#y-${y*this.props.Store.size}`}
-                      x={x*this.props.Store.size} 
-                      y={y*this.props.Store.size} 
-                      size={this.props.Store.size}  
-                    />
-                  )
-                })
-              })}
-            </Layer>
-          </Stage>}
+          <div style={{padding: '30px'}}>
+            <Stage width={width} height={height}
+              onMouseDown={() => this.handleMousedown(true)}
+              onMouseUp={() => this.handleMousedown(false)}>
+              <Layer>
+                {[...Array(this.props.Store.lines)].map((val, y) => {
+                  return [...Array(this.props.Store.columns)].map((val, x) => {
+                    return (
+                      <Rectangle 
+                        key={`x-${x*size}#y-${y*size}`}
+                        x={x*size} 
+                        y={y*size} 
+                        size={size}  
+                      />
+                    )
+                  })
+                })}
+              </Layer>
+            </Stage>
+          </div>
         </Grid>
       </Grid>
     );

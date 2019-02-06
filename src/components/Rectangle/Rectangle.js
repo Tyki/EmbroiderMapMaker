@@ -27,8 +27,6 @@ class Rectangle extends React.Component {
     this.setState({
       color: this.props.Store.color
     })
-
-    console.log(this.state)
   }
 
   handleMouseOver = (e) => {
